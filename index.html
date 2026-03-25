@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NexoraLearn LMS</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="container">
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <div class="logo">NexoraLearn</div>
+        <div class="nav-links">
+            <a href="index.html" class="active">Home</a>
+            <a href="courses.html">Courses</a>
+            <a href="about.html">About</a>
+            <a href="login.html">Login</a>
+        </div>
+    </div>
+
+    <!-- HERO -->
+    <div class="hero">
+        <div class="hero-left">
+            <h1><span>Our Mission</span> Is To Help You Achieve Your Dreams</h1>
+            <p>Working collaboratively to ensure every student achieves academically.</p>
+
+            <div class="buttons">
+                <button class="btn-primary" onclick="goToLogin()">Apply Now</button>
+                <button class="btn-outline" onclick="showInfo()">Know More</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- IMAGE SECTION -->
+    <div class="image-section">
+        <div class="image-header">
+            <i>🎓</i>
+            <span>Students</span>
+        </div>
+
+        <div class="image-grid">
+            <div class="image-card">
+                <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644">
+            </div>
+            <div class="image-card">
+                <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c">
+            </div>
+        </div>
+
+        <div class="student-text">
+            <b>30K+</b> Happy Students Worldwide
+        </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats">
+        <div class="stat-box"><h2>30K+</h2><p>Students</p></div>
+        <div class="stat-box"><h2>120+</h2><p>Courses</p></div>
+        <div class="stat-box"><h2>50+</h2><p>Instructors</p></div>
+    </div>
+
+</div>
+
+
+<!-- 🤖 AI ASSISTANT -->
+<div class="ai-btn" onclick="toggleAI()">🤖</div>
+
+<div id="aiBox" class="ai-box">
+
+    <div class="ai-header">
+        Nexora AI 🤖
+        <span onclick="toggleAI()">✖</span>
+    </div>
+
+    <!-- FAQ -->
+    <div class="ai-suggestions">
+        <span onclick="quickAsk('Best course')">Best Course</span>
+        <span onclick="quickAsk('Price')">Price</span>
+        <span onclick="quickAsk('Certificate')">Certificate</span>
+        <span onclick="quickAsk('Login help')">Login</span>
+    </div>
+
+    <div id="aiChat" class="ai-chat"></div>
+
+    <div class="ai-input">
+        <input type="text" id="aiInput" placeholder="Ask something...">
+        <button onclick="startVoice()">🎤</button>
+        <button onclick="sendAI()">➤</button>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

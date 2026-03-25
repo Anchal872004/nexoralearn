@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - NexoraLearn</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="navbar">
+        <div class="logo">NexoraLearn</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="courses.html">Courses</a>
+            <a href="about.html">About</a>
+            <a href="#" class="active">Login</a>
+        </div>
+    </div>
+
+    <div class="login-container">
+
+        <!-- LEFT IMAGE -->
+        <div class="login-image">
+            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80">
+        </div>
+
+        <!-- RIGHT FORM -->
+        <div class="login-form">
+
+            <!-- LOGIN FORM -->
+            <div id="loginForm">
+                <h2>Welcome Back 👋</h2>
+                <p>Login to access your dashboard and courses</p>
+
+                <input type="text" id="email" placeholder="Email">
+                <input type="password" id="password" placeholder="Password">
+
+                <button class="btn-primary" onclick="loginUser()">Login</button>
+
+                <p class="login-text">
+                    Don't have an account? 
+                    <a href="#" onclick="showSignup()">Sign up</a>
+                </p>
+            </div>
+
+            <!-- SIGNUP FORM -->
+            <div id="signupForm" style="display:none;">
+                <h2>Create Account 🚀</h2>
+                <p>Start your learning journey</p>
+
+                <input type="text" id="signupName" placeholder="Full Name">
+                <input type="email" id="signupEmail" placeholder="Email">
+                <input type="password" id="signupPassword" placeholder="Password">
+
+                <button class="btn-primary" onclick="signupUser()">Sign Up</button>
+
+                <p class="login-text">
+                    Already have an account? 
+                    <a href="#" onclick="showLogin()">Login</a>
+                </p>
+            </div>
+            <input type="password" id="password" placeholder="Password">
+             <a href="#" class="forgot-pass" onclick="showForgotPass()">Forgot Password?</a>
+
+  <!-- Forgot Password Modal -->
+    <div id="forgotModal" class="forgot-modal">
+      <div class="forgot-box">
+        <h3>Reset Password</h3>
+        <p>Enter your email to reset password</p>
+        <input type="email" id="forgotEmail" placeholder="Email">
+        <button onclick="resetPassword()">Send</button>
+        <button class="close-btn" onclick="closeForgotPass()">Cancel</button>
+      </div>
+    </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- AI Assistant -->
+<div class="ai-btn" onclick="toggleAI()">🤖</div>
+
+<div id="aiBox" class="ai-box">
+    <div class="ai-header">
+        Nexora AI 🤖
+        <span onclick="toggleAI()">✖</span>
+    </div>
+
+    <div class="ai-suggestions">
+        <span onclick="quickAsk('Best course')">Best Course</span>
+        <span onclick="quickAsk('Price')">Price</span>
+        <span onclick="quickAsk('Certificate')">Certificate</span>
+        <span onclick="quickAsk('Login help')">Login Help</span>
+    </div>
+
+    <div id="aiChat" class="ai-chat"></div>
+
+    <div class="ai-input">
+        <input type="text" id="aiInput" placeholder="Ask something..." onkeypress="handleEnter(event)">
+        <button onclick="startVoice()">🎤</button>
+        <button onclick="sendAI()">➤</button>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About - NexoraLearn</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="navbar">
+        <div class="logo">NexoraLearn</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="courses.html">Courses</a>
+            <a href="#" class="active">About</a>
+            <a href="login.html">Login</a>
+        </div>
+    </div>
+
+    <div class="about">
+        <h1>About NexoraLearn</h1>
+
+        <div class="about-grid">
+
+            <div class="about-text">
+                <p>NexoraLearn helps students learn modern skills online.</p>
+                <p>We focus on quality education, expert mentors, and interactive courses that build real skills for careers.</p>
+                <p>Our platform offers: Web Development, Python, AI, Cloud Computing, and more with structured learning paths.</p>
+                <p>Whether you are starting a career or upskilling, NexoraLearn ensures you succeed with hands-on projects and guidance.</p>
+            </div>
+
+            <div class="carousel">
+    <div class="slides-wrapper">
+        <div class="slides">
+            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80">
+            <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80">
+            <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7?auto=format&fit=crop&w=800&q=80">
+        </div>
+    </div>
+     <button class="prev" onclick="moveSlide(-1)">❮</button>
+     <button class="next" onclick="moveSlide(1)">❯</button>
+   </div>
+  </div>
+  </div>
+
+</div>
+
+<!-- AI Assistant -->
+<div class="ai-btn" onclick="toggleAI()">🤖</div>
+<div id="aiBox" class="ai-box">
+    <div class="ai-header">
+        Nexora AI 🤖
+        <span onclick="toggleAI()">✖</span>
+    </div>
+
+    <div class="ai-suggestions">
+        <span onclick="quickAsk('Best course')">Best Course</span>
+        <span onclick="quickAsk('Price')">Price</span>
+        <span onclick="quickAsk('Certificate')">Certificate</span>
+        <span onclick="quickAsk('Login help')">Login Help</span>
+    </div>
+
+    <div id="aiChat" class="ai-chat"></div>
+
+    <div class="ai-input">
+        <input type="text" id="aiInput" placeholder="Ask something..." onkeypress="handleEnter(event)">
+        <button onclick="startVoice()">🎤</button>
+        <button onclick="sendAI()">➤</button>
+    </div>
+</div>
+
+<script>
+let index = 0;
+function moveSlide(step) {
+    const slides = document.querySelector(".slides");
+    const total = slides.children.length;
+    index = (index + step + total) % total;
+    slides.style.transform = `translateX(-${index * 100}%)`;
+}
+</script>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-const API = "http://localhost:5000/api";
+const API = "https://nexoralearn-backend.onrender.com/api";
 
 /* ================= NAVIGATION ================= */
 function goToLogin() {

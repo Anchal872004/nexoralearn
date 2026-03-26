@@ -202,7 +202,7 @@ function openPayment(index) {
 
     alert("✅ Payment Successful");
 
-    loadCourses();
+    loadCoursesFastS();
 }
 
 /* ================= LOAD COURSE PAGE ================= */
@@ -241,6 +241,69 @@ function loadCoursePage() {
     iframe.src = videoUrl + "?autoplay=1&controls=1";
 
     loadProgress();
+}
+
+// 🚀 CACHE COURSES (NO RELOAD ON SCROLL)
+let cachedCourses = null;
+
+async function loadCoursesFast() {
+
+    const grid = document.getElementById("courseGrid");
+    if (!grid) return;
+
+    // use cache if exists
+    if (cachedCourses) {
+        renderCourses(cachedCourses);
+        return;
+    }
+
+    try {
+        const res = await fetch(`${API}/courses`);
+        const data = await res.json();
+
+        cachedCourses = (Array.isArray(data) && data.length) ? data : demoCourses;
+
+    } catch {
+        cachedCourses = demoCourses;
+    }
+
+    renderCourses(cachedCourses);
+}
+
+// separate render function
+function renderCourses(courses) {
+
+    const grid = document.getElementById("courseGrid");
+    grid.innerHTML = "";
+
+    window.allCourses = courses;
+
+    courses.forEach((course, index) => {
+
+        const card = document.createElement("div");
+        card.className = "course-card";
+
+        const isBought = JSON.parse(localStorage.getItem("purchased") || "[]")
+            .includes(course.title);
+
+        card.innerHTML = `
+            <img src="${course.image}" loading="lazy">
+            <h3>${course.title}</h3>
+            <p>${course.description}</p>
+            <button ${isBought ? "disabled" : ""}>
+                ${isBought ? "✔ Purchased" : "Buy ₹" + (course.price || 499)}
+            </button>
+        `;
+
+        card.addEventListener("click", () => openCourse(index));
+
+        card.querySelector("button").addEventListener("click", (e) => {
+            e.stopPropagation();
+            if (!isBought) openPayment(index);
+        });
+
+        grid.appendChild(card);
+    });
 }
 
 /* ================= PROGRESS ================= */
@@ -330,3 +393,66 @@ document.addEventListener("DOMContentLoaded", () => {
     if (document.getElementById("courseVideo")) loadCoursePage();
 
 });
+
+// 🚀 CACHE COURSES (NO RELOAD ON SCROLL)
+cachedCourses = null;
+
+async function loadCoursesFast() {
+
+    const grid = document.getElementById("courseGrid");
+    if (!grid) return;
+
+    // use cache if exists
+    if (cachedCourses) {
+        renderCourses(cachedCourses);
+        return;
+    }
+
+    try {
+        const res = await fetch(`${API}/courses`);
+        const data = await res.json();
+
+        cachedCourses = (Array.isArray(data) && data.length) ? data : demoCourses;
+
+    } catch {
+        cachedCourses = demoCourses;
+    }
+
+    renderCourses(cachedCourses);
+}
+
+// separate render function
+function renderCourses(courses) {
+
+    const grid = document.getElementById("courseGrid");
+    grid.innerHTML = "";
+
+    window.allCourses = courses;
+
+    courses.forEach((course, index) => {
+
+        const card = document.createElement("div");
+        card.className = "course-card";
+
+        const isBought = JSON.parse(localStorage.getItem("purchased") || "[]")
+            .includes(course.title);
+
+        card.innerHTML = `
+            <img src="${course.image}" loading="lazy">
+            <h3>${course.title}</h3>
+            <p>${course.description}</p>
+            <button ${isBought ? "disabled" : ""}>
+                ${isBought ? "✔ Purchased" : "Buy ₹" + (course.price || 499)}
+            </button>
+        `;
+
+        card.addEventListener("click", () => openCourse(index));
+
+        card.querySelector("button").addEventListener("click", (e) => {
+            e.stopPropagation();
+            if (!isBought) openPayment(index);
+        });
+
+        grid.appendChild(card);
+    });
+}

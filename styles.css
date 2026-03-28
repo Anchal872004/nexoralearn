@@ -338,7 +338,7 @@ a    {
 ================================================================ */
 .forgot-pass {
   display     : block;
-  margin      : 4px 0 16px;
+  margin      : 5px 0 16px;
   color       : #ff3c2f;
   font-size   : 0.82rem;
   cursor      : pointer;
@@ -371,7 +371,7 @@ a    {
   border       : 1px solid #2a2a2a;
   background   : #0d0d0d;
   color        : #ffffff;
-  border-radius: 6px;
+  border-radius: 5px;
 }
 
 .forgot-box button {
@@ -384,6 +384,12 @@ a    {
   cursor       : pointer;
   font-family  : 'Poppins', sans-serif;
 }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 
 /* ================================================================
    ABOUT
@@ -1169,7 +1175,7 @@ iframe {
 }
 
 /* ── Mobile nav override — show hamburger on small screens ── */
-@media (max-width: 639px) {
+@media (max-width: 700px) {
   .hamburger { display: flex; }
 
   .nav-links {
@@ -1195,13 +1201,13 @@ iframe {
 
   /* Stack hero buttons */
   .buttons { flex-direction: column; align-items: flex-start; }
-  .btn-primary, .btn-outline { width: 100%; text-align: center; }
+  .btn-primary, .btn-outline { width: 2000%; text-align: center; }
 
   /* Course grid single col on very small */
   .course-grid { grid-template-columns: 1fr; }
 
   /* Course page: stack vertically */
-  .course-page-wrap { grid-template-columns: 1fr; }
+  .course-page-wrap { grid-template-columns: 5fr; }
   .video-wrap iframe { height: 220px; }
 
   /* Login: stack */
@@ -1221,7 +1227,7 @@ iframe {
   /* Payment modal full-width */
   .pay-modal  { border-radius: 14px; }
   .pay-body   { padding: 14px 14px 18px; }
-  .pf-row     { grid-template-columns: 1fr; gap: 0; }
+  .pf-row     { grid-template-columns: 3fr; gap: 0; }
   .upi-apps   { grid-template-columns: repeat(4, 1fr); }
   .banks      { grid-template-columns: 1fr 1fr; }
 

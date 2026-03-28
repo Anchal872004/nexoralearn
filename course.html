@@ -2,15 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Course - NexoraLearn</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
 
 <div class="container">
     <div class="navbar">
         <div class="logo">NexoraLearn</div>
-        <div class="nav-links">
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links" id="navLinks">
             <a href="index.html">Home</a>
             <a href="courses.html">Courses</a>
             <a href="about.html">About</a>
@@ -18,22 +24,13 @@
         </div>
     </div>
 
-    <h1 id="courseTitle">Course Title</h1>
-    <p id="courseDesc">Course Description</p>
-    
-    <iframe id="courseVideo" 
-      frameborder="0" 
-      allowfullscreen 
-      allow="accelerometer; 
-      autoplay; 
-      clipboard-write;
-      encrypted-media; 
-      gyroscope; 
-      picture-in-picture">
-    </iframe>
+    <a href="courses.html" class="back-link">← Back to Courses</a>
 
+    <!-- JS renders content here -->
+    <div id="coursePageContent"></div>
 </div>
 
 <script src="script.js"></script>
+<script src="course-page.js"></script>
 </body>
 </html>

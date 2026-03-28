@@ -2,15 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Courses - NexoraLearn</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
 
 <div class="container">
     <div class="navbar">
         <div class="logo">NexoraLearn</div>
-        <div class="nav-links">
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links" id="navLinks">
             <a href="index.html">Home</a>
             <a href="#" class="active">Courses</a>
             <a href="about.html">About</a>
@@ -18,10 +23,130 @@
         </div>
     </div>
 
-    <h1>All Courses</h1>
+    <h1 class="page-title">All Courses</h1>
     <div id="courseGrid" class="course-grid"></div>
 </div>
 
+<!-- PAYMENT MODAL -->
+<div class="pay-overlay" id="payOverlay">
+    <div class="pay-modal">
+
+        <div class="pay-modal-head">
+            <h2>🔒 Secure Checkout</h2>
+            <button class="close-x" id="closePayBtn">✕</button>
+        </div>
+
+        <div class="pay-summary">
+            <span class="pay-summary-name" id="payCourseName">Course Name</span>
+            <span class="pay-summary-price" id="payCoursePrice">₹499</span>
+        </div>
+
+        <div id="payFormArea">
+            <div class="pay-tabs">
+                <button class="pay-tab active" data-tab="card"><span class="ti">💳</span> Card</button>
+                <button class="pay-tab" data-tab="upi"><span class="ti">📱</span> UPI</button>
+                <button class="pay-tab" data-tab="nb"><span class="ti">🏦</span> Net Banking</button>
+            </div>
+
+            <div class="pay-body">
+
+                <!-- CARD -->
+                <div class="pay-panel active" id="ppanel-card">
+                    <div class="mini-card">
+                        <div class="mini-circles"><span class="mc"></span><span class="mc"></span></div>
+                        <div class="mini-chip"></div>
+                        <div class="mini-num" id="mcNum">•••• •••• •••• ••••</div>
+                        <div class="mini-bottom">
+                            <div><div class="mini-label">HOLDER</div><div class="mini-val" id="mcName">FULL NAME</div></div>
+                            <div><div class="mini-label">EXPIRES</div><div class="mini-val" id="mcExp">MM/YY</div></div>
+                        </div>
+                    </div>
+                    <div class="pf-group">
+                        <label class="pf-label">Card Number</label>
+                        <input class="pf-input mono" id="pcNum" maxlength="19" placeholder="0000  0000  0000  0000" autocomplete="cc-number">
+                        <div class="pf-err" id="e-pcNum">Enter a valid 16-digit number.</div>
+                    </div>
+                    <div class="pf-group">
+                        <label class="pf-label">Cardholder Name</label>
+                        <input class="pf-input" id="pcName" placeholder="Name on card" autocomplete="cc-name">
+                        <div class="pf-err" id="e-pcName">Enter cardholder name.</div>
+                    </div>
+                    <div class="pf-row">
+                        <div class="pf-group">
+                            <label class="pf-label">Expiry</label>
+                            <input class="pf-input mono" id="pcExp" maxlength="7" placeholder="MM / YY" autocomplete="cc-exp">
+                            <div class="pf-err" id="e-pcExp">Invalid expiry.</div>
+                        </div>
+                        <div class="pf-group">
+                            <label class="pf-label">CVV</label>
+                            <input class="pf-input mono" id="pcCvv" maxlength="3" placeholder="•••" type="password" autocomplete="cc-csc">
+                            <div class="pf-err" id="e-pcCvv">Enter 3-digit CVV.</div>
+                        </div>
+                    </div>
+                    <button class="pay-action-btn" id="cardPayBtn" data-method="card">
+                        <div class="pay-spinner" id="cardSpin"></div>
+                        <span id="cardBtnTxt">Pay <span id="cardAmt">₹499</span></span>
+                    </button>
+                </div>
+
+                <!-- UPI -->
+                <div class="pay-panel" id="ppanel-upi">
+                    <div class="upi-apps">
+                        <div class="upi-app" data-app="GPay"><div class="upi-app-icon">🟢</div><div class="upi-app-name">GPay</div></div>
+                        <div class="upi-app" data-app="PhonePe"><div class="upi-app-icon">🟣</div><div class="upi-app-name">PhonePe</div></div>
+                        <div class="upi-app" data-app="Paytm"><div class="upi-app-icon">🔵</div><div class="upi-app-name">Paytm</div></div>
+                        <div class="upi-app" data-app="BHIM"><div class="upi-app-icon">🟠</div><div class="upi-app-name">BHIM</div></div>
+                    </div>
+                    <div class="upi-divider">OR enter UPI ID</div>
+                    <div class="pf-group">
+                        <label class="pf-label">UPI ID</label>
+                        <input class="pf-input mono" id="pupiId" placeholder="yourname@upi">
+                        <div class="pf-err" id="e-pupiId">Enter a valid UPI ID (e.g. name@bank).</div>
+                    </div>
+                    <button class="pay-action-btn" id="upiPayBtn" data-method="upi">
+                        <div class="pay-spinner" id="upiSpin"></div>
+                        <span id="upiBtnTxt">Pay via UPI <span id="upiAmt">₹499</span></span>
+                    </button>
+                </div>
+
+                <!-- NET BANKING -->
+                <div class="pay-panel" id="ppanel-nb">
+                    <div class="banks">
+                        <div class="bank-opt" data-bank="SBI"><span class="bi">🏛️</span> SBI</div>
+                        <div class="bank-opt" data-bank="HDFC"><span class="bi">🏦</span> HDFC</div>
+                        <div class="bank-opt" data-bank="ICICI"><span class="bi">💼</span> ICICI</div>
+                        <div class="bank-opt" data-bank="Axis"><span class="bi">🔷</span> Axis</div>
+                        <div class="bank-opt" data-bank="Kotak"><span class="bi">🏢</span> Kotak</div>
+                        <div class="bank-opt" data-bank="Yes Bank"><span class="bi">✅</span> Yes Bank</div>
+                    </div>
+                    <div class="pf-group">
+                        <label class="pf-label">Selected Bank</label>
+                        <input class="pf-input" id="pSelBank" placeholder="Choose a bank above" readonly>
+                        <div class="pf-err" id="e-pSelBank">Please select a bank.</div>
+                    </div>
+                    <button class="pay-action-btn" id="nbPayBtn" data-method="nb">
+                        <div class="pay-spinner" id="nbSpin"></div>
+                        <span id="nbBtnTxt">Continue to Net Banking</span>
+                    </button>
+                </div>
+
+                <div class="ssl-note">🔐 256-bit SSL · PCI-DSS Compliant · Card data never stored</div>
+            </div>
+        </div>
+
+        <!-- Success -->
+        <div class="pay-success" id="paySuccess">
+            <div class="suc-icon">✅</div>
+            <div class="suc-title">Payment Successful!</div>
+            <div class="suc-sub" id="sucMsg">Course unlocked.</div>
+            <div class="suc-txn" id="sucTxn">TXN ID: —</div>
+            <button class="suc-close" id="sucCloseBtn">Start Learning →</button>
+        </div>
+
+    </div>
+</div>
+
 <script src="script.js"></script>
+<script src="payment.js"></script>
 </body>
 </html>

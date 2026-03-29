@@ -333,6 +333,12 @@ a    {
 }
 .login-form input:focus { border-color: #ff3c2f; }
 
+.login-text a {
+  color: rgb(40, 40, 177);
+  text-decoration: underline;
+  font-weight: 500;
+}
+
 /* ================================================================
    FORGOT PASSWORD
 ================================================================ */
@@ -1091,146 +1097,77 @@ iframe {
 #loginForm, #signupForm { animation: fadeIn 0.4s ease; }
 
 /* ================================================================
-   RESPONSIVE — MOBILE FIRST
-   Base styles above = mobile. Scale up below.
+   RESPONSIVE BREAKPOINTS
+   Base above = 320px phone
 ================================================================ */
-
-/* ── 480px and up — larger phones ── */
+ 
+/* 480px — larger phones: 2-col courses, row images, 3-col stats */
 @media (min-width: 480px) {
-  .course-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .image-card {
-    height: 280px;
-  }
+  .course-grid              { grid-template-columns: repeat(2, 1fr); }
+  .image-grid               { flex-direction: row; flex-wrap: wrap; }
+  .image-card               { flex: 1 1 calc(50% - 8px); height: 220px; }
+  .stats                    { grid-template-columns: repeat(3, 1fr); }
+  .buttons                  { flex-direction: row; }
+  .btn-primary, .btn-outline { width: auto; }
 }
-
-/* ── 640px and up — small tablets / large phones landscape ── */
+ 
+/* 640px — tablets: show desktop nav, login side-by-side, payment popup */
 @media (min-width: 640px) {
-  .navbar {
-    padding: 20px 0;
-  }
-
-  /* Hide hamburger, show inline nav */
-  .hamburger  { display: none; }
-  .nav-links  {
-    display : flex !important; /* override .open toggle */
-    position: static;
-    flex-direction: row;
-    background: none;
-    padding: 0;
-    border: none;
-    gap: 24px;
-  }
-
-  .pay-modal { max-width: 460px; }
-
-  .banks { grid-template-columns: 1fr 1fr; }
+  .container                { padding: 20px 0 60px; }
+  .hamburger                { display: none !important; }
+  .nav-links                { display: flex !important; position: static; flex-direction: row; background: none; height: auto; padding: 0; gap: 22px; backdrop-filter: none; border: none; }
+  .nav-links a              { font-size: 0.88rem; }
+  .login-image              { display: block; flex: 0 0 42%; }
+  .login-container          { flex-direction: row; }
+  .login-form               { padding: 36px 32px; }
+  .about-grid               { flex-direction: row; align-items: center; }
+  .image-card               { height: 250px; }
+  .slides img               { height: 260px; }
+  /* Payment: centered popup instead of bottom sheet */
+  .pay-overlay              { align-items: center; padding: 16px; }
+  .pay-modal                { border-radius: 18px; max-width: 460px; animation: modalIn 0.3s cubic-bezier(.34,1.2,.64,1); }
+  @keyframes modalIn { from { transform: scale(0.88) translateY(20px); opacity: 0; } to { transform: scale(1) translateY(0); opacity: 1; } }
+  /* AI box fixed width on tablet+ */
+  .ai-box                   { left: auto; right: 20px; width: 320px; bottom: 80px; }
 }
-
-/* ── 768px and up — tablets ── */
+ 
+/* 768px — wider tablets: 3-col courses, side-by-side course page */
 @media (min-width: 768px) {
-  body { font-size: 15px; }
-
-  .course-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .login-container {
-    flex-direction: row;
-  }
-
-  .about-grid {
-    flex-direction: row;
-  }
-
-  .course-page-wrap {
-    grid-template-columns: 1fr 280px;
-  }
-
-  .video-wrap iframe { height: 360px; }
-
-  .stats {
-    flex-wrap: nowrap;
-  }
+  .course-grid              { grid-template-columns: repeat(3, 1fr); }
+  .course-page-wrap         { flex-direction: row; align-items: start; }
+  .course-main              { flex: 1; min-width: 0; }
+  .course-sidebar           { width: 280px; flex-shrink: 0; }
+  .video-wrap iframe        { height: 340px; }
+  iframe                    { height: 340px; }
+  .hero                     { margin-top: 40px; }
+  .stats                    { display: flex; justify-content: center; gap: 16px; }
+  .stat-box                 { flex: 1 1 160px; max-width: 220px; }
+  .image-card               { height: 270px; }
 }
-
-/* ── 1024px and up — desktop ── */
+ 
+/* 1024px — desktop: 4-col courses, larger video, wider sidebar */
 @media (min-width: 1024px) {
-  .course-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  .course-page-wrap {
-    grid-template-columns: 1fr 300px;
-    gap: 24px;
-  }
-
-  .video-wrap iframe { height: 400px; }
-
-  .image-card { height: 300px; }
-
-  .hero-left h1 { font-size: 2.6rem; }
+  .course-grid              { grid-template-columns: repeat(4, 1fr); }
+  .course-sidebar           { width: 300px; }
+  .video-wrap iframe        { height: 400px; }
+  iframe                    { height: 400px; }
+  .image-card               { height: 290px; }
+  .hero-left h1             { font-size: 2.6rem; }
+  .logo                     { font-size: 22px; }
 }
-
-/* ── Mobile nav override — show hamburger on small screens ── */
-@media (max-width: 700px) {
-  .hamburger { display: flex; }
-
+ 
+/* Mobile nav fullscreen overlay (max 639px) */
+@media (max-width: 639px) {
+  .hamburger                { display: flex; }
   .nav-links {
-    display       : none;
-    position      : fixed;
-    top           : 0; left: 0; right: 0;
-    background    : rgba(13,13,13,0.98);
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(13,13,13,0.98);
     backdrop-filter: blur(10px);
     flex-direction: column;
-    align-items   : center;
-    justify-content: center;
-    gap           : 28px;
-    height        : 100vh;
-    font-size     : 1.1rem;
-    z-index       : 9;
-    padding       : 80px 20px 40px;
-    border-bottom : 1px solid #1a1a1a;
+    align-items: center; justify-content: center;
+    gap: 30px; z-index: 100;
   }
-
-  .nav-links.open { display: flex; animation: fadeIn 0.25s ease; }
-
-  .nav-links a { font-size: 1.05rem; }
-
-  /* Stack hero buttons */
-  .buttons { flex-direction: column; align-items: flex-start; }
-  .btn-primary, .btn-outline { width: 2000%; text-align: center; }
-
-  /* Course grid single col on very small */
-  .course-grid { grid-template-columns: 1fr; }
-
-  /* Course page: stack vertically */
-  .course-page-wrap { grid-template-columns: 5fr; }
-  .video-wrap iframe { height: 220px; }
-
-  /* Login: stack */
-  .login-container { flex-direction: column; }
-  .login-image     { display: none; }
-
-  /* About: stack */
-  .about-grid { flex-direction: column; }
-
-  /* Stats: 2 cols */
-  .stats { display: grid; grid-template-columns: 1fr 1fr; }
-  .stat-box { max-width: 100%; }
-
-  /* AI box full-width on mobile */
-  .ai-box { right: 8px; left: 8px; width: auto; }
-
-  /* Payment modal full-width */
-  .pay-modal  { border-radius: 14px; }
-  .pay-body   { padding: 14px 14px 18px; }
-  .pf-row     { grid-template-columns: 3fr; gap: 0; }
-  .upi-apps   { grid-template-columns: repeat(4, 1fr); }
-  .banks      { grid-template-columns: 1fr 1fr; }
-
-  /* Image grid stack */
-  .image-card { flex: 1 1 100%; height: 220px; }
+  .nav-links.open           { display: flex; animation: fadeIn 0.25s ease; }
+  .nav-links a              { font-size: 1.1rem; }
 }

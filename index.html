@@ -2,8 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NexoraLearn LMS</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -12,7 +14,10 @@
     <!-- NAVBAR -->
     <div class="navbar">
         <div class="logo">NexoraLearn</div>
-        <div class="nav-links">
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links" id="navLinks">
             <a href="index.html" class="active">Home</a>
             <a href="courses.html">Courses</a>
             <a href="about.html">About</a>
@@ -25,7 +30,6 @@
         <div class="hero-left">
             <h1><span>Our Mission</span> Is To Help You Achieve Your Dreams</h1>
             <p>Working collaboratively to ensure every student achieves academically.</p>
-
             <div class="buttons">
                 <button class="btn-primary" onclick="goToLogin()">Apply Now</button>
                 <button class="btn-outline" onclick="showInfo()">Know More</button>
@@ -35,23 +39,16 @@
 
     <!-- IMAGE SECTION -->
     <div class="image-section">
-        <div class="image-header">
-            <i>🎓</i>
-            <span>Students</span>
-        </div>
-
+        <div class="image-header"><i>🎓</i><span>Students</span></div>
         <div class="image-grid">
             <div class="image-card">
-                <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644">
+                <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644" alt="Students collaborating">
             </div>
             <div class="image-card">
-                <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c">
+                <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c" alt="Students learning">
             </div>
         </div>
-
-        <div class="student-text">
-            <b>30K+</b> Happy Students Worldwide
-        </div>
+        <div class="student-text"><b>30K+</b> Happy Students Worldwide</div>
     </div>
 
     <!-- STATS -->
@@ -63,33 +60,29 @@
 
 </div>
 
-
-<!-- 🤖 AI ASSISTANT -->
-<div class="ai-btn" onclick="toggleAI()">🤖</div>
+<!-- NEXORA AI -->
+<div class="ai-btn" onclick="toggleAI()" title="Ask Nexora AI">🤖</div>
 
 <div id="aiBox" class="ai-box">
-
     <div class="ai-header">
-        Nexora AI 🤖
-        <span onclick="toggleAI()">✖</span>
+        <span><span class="ai-online"></span>Nexora AI</span>
+        <div class="ai-head-actions">
+            <button class="ai-icon-btn" onclick="clearChat()" title="Clear">🗑</button>
+            <button class="ai-icon-btn" onclick="toggleAI()" title="Close">✕</button>
+        </div>
     </div>
-
-    <!-- FAQ -->
     <div class="ai-suggestions">
-        <span onclick="quickAsk('Best course')">Best Course</span>
-        <span onclick="quickAsk('Price')">Price</span>
-        <span onclick="quickAsk('Certificate')">Certificate</span>
-        <span onclick="quickAsk('Login help')">Login</span>
+        <span onclick="quickAsk('What courses do you offer?')">📚 Courses</span>
+        <span onclick="quickAsk('How much do courses cost?')">💰 Pricing</span>
+        <span onclick="quickAsk('How do I get a certificate?')">🏆 Certificate</span>
+        <span onclick="quickAsk('Which course should I start with?')">🤔 Help choose</span>
     </div>
-
     <div id="aiChat" class="ai-chat"></div>
-
     <div class="ai-input">
-        <input type="text" id="aiInput" placeholder="Ask something...">
-        <button onclick="startVoice()">🎤</button>
-        <button onclick="sendAI()">➤</button>
+        <input type="text" id="aiInput" placeholder="Ask me anything...">
+        <button onclick="startVoice()" title="Voice">🎤</button>
+        <button onclick="sendAI()" title="Send">➤</button>
     </div>
-
 </div>
 
 <script src="script.js"></script>

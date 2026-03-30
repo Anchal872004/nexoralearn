@@ -1087,6 +1087,53 @@ iframe {
 .suc-close:hover { background: rgba(46,204,113,0.2); }
 
 /* ================================================================
+   ADD THIS TO THE BOTTOM OF styles.css
+   Typing indicator for Gemini AI (3 animated dots)
+================================================================ */
+
+.typing-indicator {
+  display    : flex !important;
+  align-items: center;
+  gap        : 4px;
+  padding    : 10px 14px;
+  min-width  : 48px;
+}
+
+.typing-indicator span {
+  width        : 7px;
+  height       : 7px;
+  background   : #aaaaaa;
+  border-radius: 50%;
+  display      : inline-block;
+  animation    : typingBounce 1.2s ease-in-out infinite;
+}
+
+.typing-indicator span:nth-child(1) { animation-delay: 0s;    }
+.typing-indicator span:nth-child(2) { animation-delay: 0.2s;  }
+.typing-indicator span:nth-child(3) { animation-delay: 0.4s;  }
+
+@keyframes typingBounce {
+  0%, 60%, 100% { transform: translateY(0);    opacity: 0.4; }
+  30%           { transform: translateY(-6px); opacity: 1;   }
+}
+
+/* Code blocks inside AI chat bubbles */
+.bot-msg code {
+  display         : block;
+  background      : #0d0d0d;
+  border          : 1px solid #333;
+  border-radius   : 6px;
+  padding         : 8px 10px;
+  font-family     : 'JetBrains Mono', monospace;
+  font-size       : 0.75rem;
+  white-space     : pre-wrap;
+  word-break      : break-all;
+  margin          : 6px 0 2px;
+  color           : #e0e0e0;
+  max-width       : 100%;
+}
+
+/* ================================================================
    ANIMATIONS (global)
 ================================================================ */
 @keyframes fadeIn {

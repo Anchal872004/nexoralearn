@@ -1,9 +1,3 @@
-/* ================================================================
-   NEXORALEARN — FINAL script.js
-   ❌ No Gemini
-   ✅ Fully working FREE AI chatbot
-================================================================ */
-
 const API = "https://nexoralearn-backend.onrender.com/api";
 
 /* ================= NAVIGATION ================= */
@@ -176,7 +170,7 @@ function downloadCertificate() {
 }
 
 /* ================================================================
-   🤖 FREE AI CHATBOT
+   🤖 AI CHATBOT
 ================================================================ */
 
 function toggleAI() {
